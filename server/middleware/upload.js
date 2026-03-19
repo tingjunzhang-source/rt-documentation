@@ -21,7 +21,7 @@ const upload = multer({
 
 // Avatar image upload — saved to public/avatars/uploads/
 const avatarDir = path.join(__dirname, '../public/avatars/uploads');
-fs.mkdirSync(avatarDir, { recursive: true });
+try { fs.mkdirSync(avatarDir, { recursive: true }); } catch (_) {}
 
 const avatarStorage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, avatarDir),
